@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEYMON</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <style>
+        .tar {
+            padding: .5rem;
+            background: #ffffff1f;
+            font-size: .9rem;
+            border-radius: 4px;
+            margin: .2rem auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>keymon</h2>
+
+            <div class="right">
+                <a href="/create">
+                    <button class="b-btn"><i class="fa-solid fa-plus"></i></button>
+                </a>
+            </div>
+        </div>
+
+        <% for(let tar of targets) { %>
+            <div class="tar" data-id="<%- tar %>">
+                <h3><%- tar %></h3>
+            </div>
+            <% } %>
+    </div>
+
+    <script>
+        document.querySelectorAll(".tar").forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.getAttribute('data-id')
+                location.href = `/panel?id=${id}`
+            })
+        })
+    </script>
+</body>
+
+</html>

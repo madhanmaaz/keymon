@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEYMON PANEL</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <style>
+        .container {
+            background: #000000da;
+        }
+
+        .content {
+            font-size: 1.3rem;
+            color: #00ffc8;
+            white-space: pre-wrap;
+        }
+    </style>
+    <script>
+        const ID = `<%- id %>`
+        const keyData = JSON.parse(`<%- data %>`)
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"
+        integrity="sha512-luMnTJZ7oEchNDZAtQhgjomP1eZefnl82ruTH/3Oj/Yu5qYtwL7+dVRccACS/Snp1lFXq188XFipHKYE75IaQQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/assets/js/panel.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>keymon - <%- id %></h2>
+
+            <div class="right">
+                <button class="b-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
+                <a href="/"> <button class="b-btn"><i class="fa-solid fa-house"></i></button></a>
+            </div>
+        </div>
+
+        <pre class="content" id="key-content"></pre>
+    </div>
+</body>
+
+</html>
