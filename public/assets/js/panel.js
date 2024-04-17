@@ -170,6 +170,7 @@ function getAscii(intCode) {
         "108": "l",
         "109": "-",
         "110": ".",
+        "111": "/",
         "112": "[F1]",
         "113": "[F2]",
         "114": "[F3]",
@@ -204,7 +205,7 @@ function getAscii(intCode) {
         "220": "\\",
         "219": "[",
         "221": "]",
-        "DISCONNECTED": "target diconnected"
+        "DISCONNECTED": "target disconnected"
     };
 
     return asciiTable[intCode]
