@@ -8,13 +8,25 @@
     <link rel="stylesheet" href="./assets/css/main.css">
     <style>
         .container {
-            background: #000000da;
+            background: #000000;
         }
 
         .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .1rem;
+        }
+
+        .key {
+            padding: .2rem .5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: #e5e5e5;
             font-size: 1.3rem;
-            color: #00ffc8;
-            white-space: pre-wrap;
+        }
+
+        .vk-key {
+            background: #00ffddda;
+            color: black;
         }
     </style>
     <script>
@@ -31,15 +43,17 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>keymon - <%- id %></h2>
-
+            <h2>keymon</h2>
+            <div class="center">
+                <h3><%- id %></h3>
+            </div>
             <div class="right">
                 <button class="b-btn delete-btn"><i class="fa-solid fa-trash"></i></button>
                 <a href="/"> <button class="b-btn"><i class="fa-solid fa-house"></i></button></a>
             </div>
         </div>
 
-        <pre class="content" id="key-content"></pre>
+        <div class="content" id="key-content"></div>
     </div>
 </body>
 

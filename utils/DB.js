@@ -7,4 +7,4 @@ const DB = new OctaviaDB({
     logging: true
 })
 
-module.exports = { DB }
+module.exports = { DB, TARGETS: {} }

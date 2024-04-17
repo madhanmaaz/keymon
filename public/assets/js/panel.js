@@ -23,14 +23,20 @@ for (const keyObj of keyData) { // previous data
 }
 
 function runner(keyLine) { // spliting int code
-    for (let intCode of keyLine.split(",").slice(0, -1)) {
+    keyLine = keyLine.split(",")
+    if (keyLine.slice(-1) == ",") {
+        keyLine = keyLine.pop()
+    }
+
+    for (let intCode of keyLine) {
         addKey(intCode)
     }
 }
 
 function addKey(intCode) { // adding key to display
     try {
-        const span = document.createElement("span")
+        const button = document.createElement("button")
+        button.className = "key"
         let currentValue = ""
         if (intCode.includes("@")) {
             intCode = intCode.replace("@", "")
@@ -39,9 +45,13 @@ function addKey(intCode) { // adding key to display
             currentValue = getAscii(intCode).toLowerCase()
         }
 
-        console.log(`INT: ${intCode}, VALUE: ${currentValue}`);
-        span.innerText = currentValue
-        keyContent.appendChild(span)
+        if (currentValue.startsWith("[") && currentValue.endsWith("]")) {
+            currentValue = currentValue.slice(1, -1)
+            button.className = "key vk-key"
+        }
+
+        button.innerText = currentValue
+        keyContent.appendChild(button)
     } catch (error) {
         console.log(`${intCode} - ERROR NOT FOUND.`, error)
     }
@@ -160,7 +170,6 @@ function getAscii(intCode) {
         "108": "l",
         "109": "-",
         "110": ".",
-        "111": "\\",
         "112": "[F1]",
         "113": "[F2]",
         "114": "[F3]",
@@ -183,12 +192,19 @@ function getAscii(intCode) {
         "162": "[LCTRL]",
         "163": "[RCTRL]",
         "190": ".",
+        "191": "/",
         "188": ",",
         "186": ";",
         "189": "-",
         "187": "=",
         "165": "",
-        "164": ""
+        "164": "",
+        "192": "`",
+        "222": "'",
+        "220": "\\",
+        "219": "[",
+        "221": "]",
+        "DISCONNECTED": "target diconnected"
     };
 
     return asciiTable[intCode]

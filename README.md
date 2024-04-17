@@ -1,15 +1,12 @@
 # KEYMON
-- Keylogger in C++ with a GUI.
+- Keylogger with a GUI.
+- This is not a stable version. The stable version is coming soon with multiple features.
   
 ![banner](./public/assets/src/banner.jpg)
-
-## DEMO
-https://github.com/madhanmaaz/keymon/assets/120784875/8044f9a9-0713-481d-bc4e-82b7c4344cb0
 
 ## Requirements
 - For server & build
     - Nodejs
-    - c++ compiler
 
 ## Installation
 Install **KEYMON** with GIT

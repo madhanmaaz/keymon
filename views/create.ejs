@@ -33,6 +33,7 @@
             overflow: auto;
         }
 
+        select,
         input {
             background: #ffffff15;
             font-size: 1.2rem;
@@ -43,8 +44,12 @@
             margin: .1rem auto;
         }
 
+        select option {
+            background: #000;
+        }
+
         input[type="submit"] {
-            background: #ff3600;
+            background: linear-gradient(100deg, #6200ff, #7d00d0);
             cursor: pointer;
         }
 
@@ -71,9 +76,10 @@
 
         <div class="content">
             <form>
-                <input type="text" placeholder="Custom ID" name="id">
-                <input type="number" placeholder="Interval" required name="interval">
-                <input type="text" placeholder="Origin" required name="origin">
+                <select name="payload">
+                    <option value="main.py">python</option>
+                </select>
+                <input type="text" placeholder="Origin" required name="origin" value="<%- global.TUNNELURL %>">
                 <input type="submit" value="Generate">
                 <pre
                     class="line-p">COPY CODE     :<button type="button" class="b-btn" id="copy-btn"><i class="fa-solid fa-copy"></i></button></pre>
@@ -118,7 +124,7 @@
         downloadCode.addEventListener('click', () => {
             const element = document.createElement('a')
             element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(code.innerText))
-            element.setAttribute('download', "keylogger.cpp")
+            element.setAttribute('download', "keylogger.py")
             element.style.display = 'none'
             document.body.appendChild(element)
             element.click()

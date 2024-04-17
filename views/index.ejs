@@ -37,12 +37,25 @@
             <% } %>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"
+        integrity="sha512-luMnTJZ7oEchNDZAtQhgjomP1eZefnl82ruTH/3Oj/Yu5qYtwL7+dVRccACS/Snp1lFXq188XFipHKYE75IaQQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+        const socket = io("", {
+            path: '/socket.io',
+            transports: ['websocket'],
+            secure: true,
+        })
+
         document.querySelectorAll(".tar").forEach(btn => {
             btn.addEventListener('click', () => {
                 const id = btn.getAttribute('data-id')
                 location.href = `/panel?id=${id}`
             })
+        })
+
+        socket.on("dashboard", data => {
+            location.reload()
         })
     </script>
 </body>

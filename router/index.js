@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { createLogger } = require("../keylogger/keylogger")
+const { createLogger } = require("../utils/builder")
 const { DB } = require("../utils/DB")
 
 router.route("/").get((req, res) => {
